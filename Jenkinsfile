@@ -4,7 +4,7 @@ pipeline {
         stage('Clone repo') {
             steps {
                 echo 'Cloning repository...'
-                git branch: 'main', url:''
+                git branch: 'main', url:'https://github.com/agrimasharma031/two-tier-flask-app.git'
             }
         }
         stage('Build Docker image') {
