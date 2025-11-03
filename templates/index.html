@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Messages</title>
+  </head>
+  <body>
+    <h1>Messages</h1>
+    <ul>
+    {% for m in messages %}
+      <li>{{ m[0] }}</li>
+    {% else %}
+      <li>No messages yet.</li>
+    {% endfor %}
+    </ul>
+
+    <form id="msgForm">
+      <input type="text" name="new_message" id="new_message" placeholder="Type a message" required>
+      <button type="submit">Send</button>
+    </form>
+
+    <script>
+      document.getElementById('msgForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const msg = document.getElementById('new_message').value;
+        const res = await fetch('/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ new_message: msg })
+        });
+        if (res.ok) location.reload();
+        else alert('Failed to submit');
+      });
+    </script>
+  </body>
+</html>
