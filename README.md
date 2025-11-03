@@ -34,37 +34,42 @@ graph TD
 ### Application Flow
 
 ```mermaid
-sequenceDiagram
-    participant User
-    participant Flask
-    participant MySQL
-    
-    User->>Flask: Access homepage
-    Flask->>MySQL: Query all messages
-    MySQL-->>Flask: Return messages
-    Flask-->>User: Display messages
-    
-    User->>Flask: Submit new message
-    Flask->>MySQL: Insert new message
-    MySQL-->>Flask: Confirm insertion
-    Flask-->>User: Update display
+graph TD
+    classDef userStyle fill:#AED6F1,stroke:#2E86C1,stroke-width:2px;
+    classDef appStyle fill:#A9DFBF,stroke:#27AE60,stroke-width:2px;
+    classDef dbStyle fill:#F9E79F,stroke:#F1C40F,stroke-width:2px;
+
+    U[User]:::userStyle
+    F[Flask App]:::appStyle
+    D[(MySQL DB)]:::dbStyle
+
+    U -->|1. View Messages| F
+    F -->|2. Fetch Messages| D
+    D -->|3. Return Data| F
+    F -->|4. Show Messages| U
+    U -->|5. Add Message| F
+    F -->|6. Save Message| D
 ```
 
 ## CI/CD Pipeline Flow
 
 ```mermaid
 graph LR
-    A[GitHub Repository] -->|Webhook| B[Jenkins]
-    B -->|Pull| C[Build Docker Images]
-    C -->|Push| D[Deploy to EC2]
-    D -->|Start| E[Docker Compose Up]
-    E -->|Health Check| F[Application Ready]
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#dfd,stroke:#333,stroke-width:2px
-    style D fill:#fdf,stroke:#333,stroke-width:2px
-    style E fill:#dff,stroke:#333,stroke-width:2px
-    style F fill:#ffd,stroke:#333,stroke-width:2px
+    classDef defaultStyle stroke-width:3px,font-size:14px;
+    classDef sourceStyle fill:#D4EFDF,stroke:#27AE60,stroke-width:3px,font-size:14px;
+    classDef buildStyle fill:#D1F2EB,stroke:#16A085,stroke-width:3px,font-size:14px;
+    classDef deployStyle fill:#D6EAF8,stroke:#2E86C1,stroke-width:3px,font-size:14px;
+
+    A[GitHub Code]:::sourceStyle
+    B[Jenkins Build]:::buildStyle
+    C[Docker Build]:::buildStyle
+    D[EC2 Deploy]:::deployStyle
+    E[App Running]:::deployStyle
+
+    A -->|Push| B
+    B -->|Build| C
+    C -->|Deploy| D
+    D -->|Launch| E
 ```
 
 ## Technical Stack
