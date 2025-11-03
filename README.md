@@ -55,21 +55,18 @@ graph TD
 
 ```mermaid
 graph LR
-    classDef defaultStyle stroke-width:3px,font-size:14px;
-    classDef sourceStyle fill:#D4EFDF,stroke:#27AE60,stroke-width:3px,font-size:14px;
-    classDef buildStyle fill:#D1F2EB,stroke:#16A085,stroke-width:3px,font-size:14px;
-    classDef deployStyle fill:#D6EAF8,stroke:#2E86C1,stroke-width:3px,font-size:14px;
+    classDef default fill:#fff,stroke:#000,stroke-width:2px,font-size:14px;
 
-    A[GitHub Code]:::sourceStyle
-    B[Jenkins Build]:::buildStyle
-    C[Docker Build]:::buildStyle
-    D[EC2 Deploy]:::deployStyle
-    E[App Running]:::deployStyle
+    A[GitHub Code]
+    B[Jenkins Build]
+    C[Docker Build]
+    D[EC2 Deploy]
+    E[App Running]
 
-    A -->|Push| B
-    B -->|Build| C
-    C -->|Deploy| D
-    D -->|Launch| E
+    A --> B
+    B --> C
+    C --> D
+    D --> E
 ```
 
 ## Technical Stack
@@ -166,7 +163,3 @@ The included Jenkinsfile defines the CI/CD pipeline that:
 4. Deploys to AWS EC2
 5. Performs health checks
 6. Ensures zero-downtime deployment
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
