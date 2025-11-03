@@ -2,6 +2,48 @@
 
 A fully automated CI/CD pipeline that deploys a two-tier Flask application on AWS EC2 using Docker, Jenkins, and Docker Compose. It connects with GitHub for version control and delivers smooth, hands-free deployments.
 
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Architecture](#architecture)
+- [Application Flow](#application-flow)
+- [CI/CD Pipeline Flow](#cicd-pipeline-flow)
+- [Technical Stack](#technical-stack)
+- [Components](#components)
+- [Docker Configuration](#docker-configuration)
+- [Deployment Architecture](#deployment-architecture)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Jenkins Pipeline](#jenkins-pipeline)
+
+## Deployment Architecture Overview
+
+```
++-----------------+      +----------------------+      +-----------------------------+
+|   Developer     |----->|     GitHub Repo      |----->|        Jenkins Server       |
+| (pushes code)   |      | (Source Code Mgmt)   |      |  (on AWS EC2)               |
++-----------------+      +----------------------+      |                             |
+                                                     | 1. Clones Repo              |
+                                                     | 2. Builds Docker Image      |
+                                                     | 3. Runs Docker Compose      |
+                                                     +--------------+--------------+
+                                                                    |
+                                                                    | Deploys
+                                                                    v
+                                                     +-----------------------------+
+                                                     |      Application Server     |
+                                                     |      (Same AWS EC2)         |
+                                                     |                             |
+                                                     | +-------------------------+ |
+                                                     | | Docker Container: Flask | |
+                                                     | +-------------------------+ |
+                                                     |              |              |
+                                                     |              v              |
+                                                     | +-------------------------+ |
+                                                     | | Docker Container: MySQL | |
+                                                     | +-------------------------+ |
+                                                     +-----------------------------+
+```
+
 ## Project Overview
 
 This application demonstrates a modern containerized web application architecture with:
