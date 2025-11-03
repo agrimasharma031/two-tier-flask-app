@@ -63,10 +63,10 @@ graph LR
     D[EC2 Deploy]
     E[App Running]
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
+    A -->|Push Code| B
+    B -->|Build Container| C
+    C -->|Deploy to Cloud| D
+    D -->|Start Service| E
 ```
 
 ## Technical Stack
