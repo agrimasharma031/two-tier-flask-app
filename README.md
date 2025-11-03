@@ -127,6 +127,8 @@ graph TB
 
 ## Getting Started
 
+> **Important**: While the project includes AWS EC2 deployment configurations, the demo EC2 instance is currently not active. The following instructions are for running the application locally.
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/agrimasharma031/two-tier-flask-app.git
