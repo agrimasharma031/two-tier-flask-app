@@ -28,10 +28,10 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - MYSQL_HOST: "mysql"
-      - MYSQL_USER: "root"
-      - MYSQL_PASSWORD: "root"
-      - MYSQL_DB: "devops_two_tier"
+      MYSQL_HOST: "mysql"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
+      MYSQL_DB: "devops_two_tier"
     networks:
       - two-tier
     depends_on:
